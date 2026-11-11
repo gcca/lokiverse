@@ -1,0 +1,46 @@
+[build-system]
+requires = ["scikit-build-core>=1.1,<2", "repairwheel>=0.8,<1"]
+build-backend = "backend"
+backend-path = ["bindings/python/_build"]
+
+[project]
+name = "lokiverse"
+version = "0.2.0"
+description = "A native Python client for sending log lines to Loki"
+requires-python = ">=3.13"
+license = "AGPL-3.0-only"
+license-files = ["LICENSE", "3rd/licenses/*.txt"]
+
+[dependency-groups]
+test = ["protobuf>=4.25", "python-snappy>=0.7.3"]
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.scripts]
+test = "python -X dev -m unittest discover -s bindings/python/tests -v"
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+build-dir = "build/{wheel_tag}"
+cmake.version = ">=4.3"
+wheel.packages = []
+sdist.inclusion-mode = "explicit"
+sdist.include = [
+  "/CMakeLists.txt",
+  "/pyproject.toml",
+  "/LICENSE",
+  "/src/*.cpp",
+  "/src/*.hpp",
+  "/3rd/httplib.h",
+  "/3rd/licenses/*.txt",
+  "/cmake/**",
+  "/proto/*.proto",
+  "/bindings/python/**",
+  "/tests/*.cc",
+]
+sdist.exclude = ["/build*/**", "/.dev-plans/**", "**/__pycache__/**"]
+
+[tool.scikit-build.cmake.define]
+LOKIVERSE_BUILD_PYTHON = "ON"
+LOKIVERSE_BUILD_TESTS = "OFF"

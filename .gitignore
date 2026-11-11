@@ -1,0 +1,8 @@
+build
+__pycache__/
+target/
+.zig-cache/
+zig-out/
+.venv/
+.pdm-python
+dist/

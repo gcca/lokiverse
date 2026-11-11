@@ -1,0 +1,12 @@
+.{
+    .name = .lokiverse,
+    .version = "0.2.0",
+    .fingerprint = 0xe70a8306fd963f30,
+    .minimum_zig_version = "0.17.1",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

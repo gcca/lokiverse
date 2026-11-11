@@ -1,0 +1,16 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+FixNamespaceComments: false
+SortIncludes:    true
+IncludeBlocks:   Regroup
+IncludeCategories:
+  - Regex: '^<Python\.h>$'
+    Priority: 0
+  - Regex: '^<.*\.(h|hpp)>$'
+    Priority: 2
+  - Regex: '^<.*>$'
+    Priority: 1
+  - Regex: '^"'
+    Priority: 3
+...

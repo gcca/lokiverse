@@ -1,0 +1,8 @@
+*
+!CMakeLists.txt
+!cmake
+!src
+!proto
+!tests
+!3rd
+3rd/__pycache__

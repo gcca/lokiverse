@@ -1,0 +1,11 @@
+[package]
+name = "lokiverse"
+version = "0.2.0"
+edition = "2024"
+description = "Rust binding for the lokiverse native Loki client"
+license = "AGPL-3.0-only"
+links = "lokiverse_c"
+build = "build.rs"
+publish = false
+
+[dependencies]

@@ -1,0 +1,28 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+
+set(lokiverse_STATIC_DEPS @LOKIVERSE_STATIC_DEPS@)
+include("${CMAKE_CURRENT_LIST_DIR}/lokiverseStaticDeps.cmake")
+if(lokiverse_STATIC_DEPS)
+  lokiverse_find_static_absl()
+endif()
+
+if(NOT TARGET protobuf::libprotobuf)
+  find_package(Protobuf QUIET CONFIG)
+  if(NOT TARGET protobuf::libprotobuf)
+    find_dependency(Protobuf)
+  endif()
+endif()
+if(NOT TARGET Snappy::snappy)
+  find_dependency(Snappy CONFIG)
+endif()
+
+if(lokiverse_STATIC_DEPS)
+  lokiverse_use_static_archives(protobuf::libprotobuf protobuf::libprotobuf-lite
+    utf8_range::utf8_validity utf8_range::utf8_range Snappy::snappy)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/lokiverseTargets.cmake")
+check_required_components(lokiverse)

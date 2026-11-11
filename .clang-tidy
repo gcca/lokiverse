@@ -1,0 +1,5 @@
+Checks: '-*,bugprone-*,-bugprone-branch-clone'
+WarningsAsErrors: false
+HeaderFilterRegex: '.*/src/.*'
+SystemHeaders: false
+FormatStyle: 'file'
